@@ -1,0 +1,421 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kisandu Jayawickrama - Profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+/* ===== HYPER REACTIVE SPIRAL FX ===== */
+
+.spiral-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    overflow: hidden;
+    background: #000;
+}
+
+/* Big center vortex */
+.vortex {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 3px solid #00eaff88;
+    box-shadow: 0 0 40px #00eaffaa;
+    animation: vortexSpin 3s linear infinite, vortexPulse 3s ease-in-out infinite;
+}
+
+@keyframes vortexSpin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes vortexPulse {
+    0%,100% { box-shadow: 0 0 40px #00eaff55; }
+    50%     { box-shadow: 0 0 80px #00eaffdd; }
+}
+
+/* Mini rapid spirals flying outwards */
+.spiral-fly {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #00eaff;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: fly 2s infinite ease-out;
+}
+
+@keyframes fly {
+    0% {
+        transform: scale(0.3) translate(0, 0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2.3) translate(300px, -300px) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Fast neon streaks */
+.streak {
+    position: absolute;
+    width: 3px;
+    height: 120px;
+    background: linear-gradient(to bottom, #00eaff, transparent);
+    filter: blur(1px);
+    opacity: 0.6;
+    animation: streakMove 2s linear infinite;
+}
+
+@keyframes streakMove {
+    from { transform: translateY(150%); }
+    to   { transform: translateY(-150%); }
+}
+
+/* Pulsing neon shockwaves */
+.wave-ring {
+    position: absolute;
+    border: 2px solid #00eaff33;
+    border-radius: 50%;
+    animation: waveExpand 5s infinite ease-out;
+}
+
+@keyframes waveExpand {
+    0% {
+        width: 40px;
+        height: 40px;
+        opacity: 1;
+    }
+    100% {
+        width: 700px;
+        height: 700px;
+        opacity: 0;
+    }
+}
+
+
+
+/* ----- GLOBAL NEON THEME ----- */
+body {
+    margin: 0;
+    font-family: 'benzin', sans-serif;
+    background: #03080F;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+h1, h2 {
+    text-shadow: 0 0 10px #00eaff;
+}
+
+/* ----- PAGE CONTAINER ----- */
+.container {
+    width: 92%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+/* ----- HEADER ----- */
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.avatar {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    margin: auto;
+    border: 4px solid #00eaff;
+    box-shadow: 0 0 25px #00eaff75;
+    background-size: cover;
+    background-position: center;
+}
+
+.info {
+    margin-top: 20px;
+    font-size: 1.3rem;
+}
+
+/* ----- SECTION CARD ----- */
+.card {
+    background: rgba(0, 30, 40, 0.6);
+    border: 1px solid #00eaff44;
+    border-radius: 18px;
+    padding: 25px;
+    margin-bottom: 40px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px #00eaff22;
+}
+
+/* ----- SKILL BARS ----- */
+.skill {
+    margin: 15px 0;
+}
+
+.skill-label {
+    margin-bottom: 5px;
+}
+
+.bar {
+    width: 100%;
+    height: 10px;
+    border-radius: 10px;
+    background: #03313d;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    border-radius: 10px;
+    background: #00eaff;
+    box-shadow: 0 0 10px #00eaff;
+}
+
+/* ----- PHOTO GALLERY ----- */
+.gallery-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 250px;
+    border-radius: 14px;
+    object-fit: cover;
+    box-shadow: 0 0 15px #00eaff40;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #00eaffaa;
+}
+/* ===== PRICING SECTION ===== */
+.pricing-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.price-card {
+    background: rgba(0, 40, 55, 0.6);
+    border: 1px solid #00eaff55;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 0 20px #00eaff33;
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.price-card:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 30px #00eaff88;
+}
+
+.price-card h3 {
+    margin-bottom: 10px;
+    text-shadow: 0 0 8px #00eaff;
+}
+
+.price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #00eaff;
+    text-shadow: 0 0 12px #00eaff;
+    margin: 10px 0 20px;
+}
+
+.price-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.price-card ul li {
+    margin: 8px 0;
+    opacity: 0.9;
+}
+
+/* Pricing button */
+.price-btn {
+    padding: 10px 25px;
+    border: 2px solid #00eaff;
+    border-radius: 10px;
+    background: transparent;
+    color: #00eaff;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 0 12px #00eaff55;
+}
+
+.price-btn:hover {
+    background: #00eaff;
+    color: #000;
+    box-shadow: 0 0 25px #00eaff;
+    transform: scale(1.08);
+}
+
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== NEW BACKGROUND ELEMENTS ===== -->
+<div class="spiral-bg">
+
+    <div class="vortex"></div>
+
+    <!-- Shockwaves -->
+    <div class="wave-ring" style="top:40%; left:45%; animation-delay: 0s;"></div>
+    <div class="wave-ring" style="top:42%; left:48%; animation-delay: 1.2s;"></div>
+
+    <!-- Flying spirals -->
+    <div class="spiral-fly" style="top:20%; left:10%; animation-delay:0s;"></div>
+    <div class="spiral-fly" style="top:60%; left:20%; animation-delay:1s;"></div>
+    <div class="spiral-fly" style="top:80%; left:70%; animation-delay:2s;"></div>
+    <div class="spiral-fly" style="top:30%; left:85%; animation-delay:3s;"></div>
+
+    <!-- Neon streaks -->
+    <div class="streak" style="left:10%; animation-delay:0s;"></div>
+    <div class="streak" style="left:25%; animation-delay:1s;"></div>
+    <div class="streak" style="left:50%; animation-delay:0.5s;"></div>
+    <div class="streak" style="left:75%; animation-delay:1.5s;"></div>
+
+</div>
+
+
+
+<div class="container">
+
+    <!-- ===== HEADER ===== -->
+    <div class="header">
+        <div class="avatar" style="background-image: url('LR Edited-11.jpg');"></div>
+        <h1>Kisandu Jayawickrama</h1>
+        <div class="info">
+            ✉️ kisandujayawickrama3001@gmail.com<br>
+            📸 Instagram:
+            <a href="https://instagram.com/kis.andu_09" target="_blank" style="color:#00eaff; text-decoration:none;">
+                @kis.andu_09
+            </a>
+        </div>
+    </div>
+
+    <!-- ===== ABOUT ===== -->
+    <div class="card">
+        <h2>About Me</h2>
+        <p>I am Kisandu — a tech geek, designer, coder, and a future F1 legend.  
+        Passionate about creativity, innovation, and leveling up every day.</p>
+    </div>
+
+    <!-- ===== SKILLS ===== -->
+    <div class="card">
+        <h2>Skills</h2>
+
+        <div class="skill">
+            <div class="skill-label">Graphic Design</div>
+            <div class="bar"><div class="bar-fill" style="width: 90%;"></div></div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-label">Coding / ICT</div>
+            <div class="bar"><div class="bar-fill" style="width: 80%;"></div></div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-label">Video Editing</div>
+            <div class="bar"><div class="bar-fill" style="width: 70%;"></div></div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-label">Photography</div>
+            <div class="bar"><div class="bar-fill" style="width: 85%;"></div></div>
+        </div>
+    </div>
+
+    <!-- ===== PHOTO GALLERY ===== -->
+    <div class="card gallery-section">
+        <h2>Photo Gallery</h2>
+
+        <div class="gallery-grid">
+            <img src="0001.jpg">
+            <img src="LR Edited-25.jpg">
+            <img src="222222.jpg">
+            <img src="enoughisenough.jpg">
+            <img src="MCG vs Aloysius u17.jpg">
+            <img src="u15 MCG vs RCG scorecard_.jpg">
+        </div>
+    </div>
+
+</div>
+<!-- ===== PRICING SECTION ===== -->
+<div class="card pricing-section" id="pricing">
+    <h2>Pricing</h2>
+
+    <div class="pricing-grid">
+        
+        <div class="price-card">
+            <h3>Basic Design</h3>
+            <p class="price">$10</p>
+            <ul>
+                <li>Poster Design</li>
+                <li>Simple Social Media Post</li>
+                <li>1 Revision</li>
+            </ul>
+            <button class="price-btn">Order Now</button>
+        </div>
+
+        <div class="price-card">
+            <h3>Standard Package</h3>
+            <p class="price">$20</p>
+            <ul>
+                <li>Advanced Poster</li>
+                <li>Logo Revamp</li>
+                <li>3 Revisions</li>
+            </ul>
+            <button class="price-btn">Order Now</button>
+        </div>
+
+        <div class="price-card">
+            <h3>Premium Bundle</h3>
+            <p class="price">$35</p>
+            <ul>
+                <li>Full Branding Pack</li>
+                <li>Social Media Kit</li>
+                <li>Unlimited Revisions</li>
+            </ul>
+            <button class="price-btn">Order Now</button>
+        </div>
+
+    </div>
+</div>
+<marquee>Made by Kisandu Jayawickrama</marquee>
+
+
+
+
+
+
+</body>
+</html>
